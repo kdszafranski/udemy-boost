@@ -3,7 +3,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody rb;
-    AudioSource src;
+    AudioSource audioSource;
 
     // editor variables
     [SerializeField] float thrustAmount = 2f;
@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        src = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,43 +28,67 @@ public class Movement : MonoBehaviour
     }
 
 
-    void ProcessThrust() {
+    void ProcessThrust() 
+    {
         if(Input.GetKey(KeyCode.Space)) {
-            // particles
-            if(!mainThruster.isPlaying) {
-                mainThruster.Play();
-            }
-
-            rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
-            // only play audio if it's not already playing
-            if(!src.isPlaying) {
-                src.PlayOneShot(thrustSound);
-            }
-        } else {
-            mainThruster.Stop();
-            if(src.isPlaying) {
-                src.Stop();
-            }
+            HandleThrust();
+        }
+        else
+        {
+            HandleNoThrust();
         }
     }
-    
-    void ProcessRotation() {
+
+    void HandleNoThrust()
+    {
+        mainThruster.Stop(); // stop particles
+
+        if (audioSource.isPlaying) {
+            audioSource.Stop();
+        }
+    }
+
+    void HandleThrust()
+    {
+        // particles
+        if (!mainThruster.isPlaying) {
+            mainThruster.Play();
+        }
+
+        rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
+
+        // only play audio if it's not already playing
+        if (!audioSource.isPlaying) {
+            audioSource.PlayOneShot(thrustSound);
+        }
+    }
+
+    void ProcessRotation() 
+    {
         float horizontal = Input.GetAxis("Horizontal");
 
         if(horizontal > 0) {
-            // right
-            // rightThruster.Play();
-            ApplyRotation(-rotationAmount);
+            RotateRight();
         }
-        if(horizontal < 0)
-        {
-            // left
-            // leftThruster.Play();
-            ApplyRotation(rotationAmount);
+
+        if (horizontal < 0) {
+            RotateLeft();
         }
     }
 
-    private void ApplyRotation(float direction)
+    void RotateLeft()
+    {
+        // leftThruster.Play();
+        ApplyRotation(rotationAmount);
+    }
+
+    void RotateRight()
+    {
+        // rightThruster.Play();
+        ApplyRotation(-rotationAmount);
+    }
+
+    void ApplyRotation(float direction)
     {
         transform.Rotate(Vector3.forward * direction * Time.deltaTime);
     }
