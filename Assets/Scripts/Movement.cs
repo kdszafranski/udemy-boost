@@ -4,8 +4,11 @@ public class Movement : MonoBehaviour
 {
     Rigidbody rb;
     AudioSource src;
+
+    // editor variables
     [SerializeField] float thrustAmount = 2f;
     [SerializeField] float rotationAmount = 0.2f; // slows down rotation speed
+    [SerializeField] AudioClip thrustSound;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
             // only play audio if it's not already playing
             if(!src.isPlaying) {
-                src.Play();
+                src.PlayOneShot(thrustSound);
             }
         } else {
             if(src.isPlaying) {
