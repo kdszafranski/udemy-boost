@@ -9,6 +9,9 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip successSound;
     [SerializeField] AudioClip crashSound;
 
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
+
     AudioSource audioSource;
 
     int sceneIndex = 0;
@@ -41,6 +44,7 @@ public class CollisionHandler : MonoBehaviour
     private void StartSuccessSequence()
     {
         DisableRocket();
+        successParticles.Play();
         audioSource.PlayOneShot(successSound);
 
         // next level
@@ -52,6 +56,7 @@ public class CollisionHandler : MonoBehaviour
     /****************************/
     void StartCrashSequence() {
         DisableRocket();      
+        crashParticles.Play();
         audioSource.PlayOneShot(crashSound);
 
         // start over
