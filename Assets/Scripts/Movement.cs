@@ -3,7 +3,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody rb;
-    AudioSource src;
+    AudioSource audioSource;
 
     // editor variables
     [SerializeField] float thrustAmount = 2f;
@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        src = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,12 +29,12 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.Space)) {
             rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
             // only play audio if it's not already playing
-            if(!src.isPlaying) {
-                src.PlayOneShot(thrustSound);
+            if(!audioSource.isPlaying) {
+                audioSource.PlayOneShot(thrustSound);
             }
         } else {
-            if(src.isPlaying) {
-                src.Stop();
+            if(audioSource.isPlaying) {
+                audioSource.Stop();
             }
         }
     }

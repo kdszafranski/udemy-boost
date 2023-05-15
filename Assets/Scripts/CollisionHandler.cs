@@ -7,16 +7,15 @@ public class CollisionHandler : MonoBehaviour
 
     [SerializeField] float loadDelayTime = 2.0f;
     [SerializeField] AudioClip successSound;
-    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip crashSound;
 
-    AudioSource src;
-
+    AudioSource audioSource;
 
     int sceneIndex = 0;
 
 
     private void Start() {
-        src = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         sceneIndex = SceneManager.GetActiveScene().buildIndex;        
     }
@@ -42,7 +41,7 @@ public class CollisionHandler : MonoBehaviour
     private void StartSuccessSequence()
     {
         DisableRocket();
-        src.PlayOneShot(successSound);
+        audioSource.PlayOneShot(successSound);
 
         // next level
         Invoke("LoadNextLevel", loadDelayTime);
@@ -53,7 +52,7 @@ public class CollisionHandler : MonoBehaviour
     /****************************/
     void StartCrashSequence() {
         DisableRocket();      
-        src.PlayOneShot(deathSound);
+        audioSource.PlayOneShot(crashSound);
 
         // start over
         Invoke("ReloadLevel", loadDelayTime);
