@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
 
+    [SerializeField] float loadDelayTime = 2.0f;
     int sceneIndex = 0;
 
     private void Start() {
@@ -19,15 +21,39 @@ public class CollisionHandler : MonoBehaviour
             Debug.Log("friendly collision");
             break;
         case "Goal":
-            Debug.Log("We made it!");
-            LoadNextLevel();
+            StartSuccessSequence();
             break;
         default:
-            Debug.Log("Dead!");
-            ReloadLevel();
+            StartCrashSequence();
             break;
        }
 
+    }
+
+    private void StartSuccessSequence()
+    {
+        DisableRocket();
+        // next level
+        Invoke("LoadNextLevel", loadDelayTime);
+    }
+
+    /****************************
+    / stop input and audio then reload the level
+    /****************************/
+    void StartCrashSequence() {
+        DisableRocket();      
+        // start over
+        Invoke("ReloadLevel", loadDelayTime);
+    }
+
+    /****************************
+    / turn off rocket movement and audio
+    /****************************/
+    private void DisableRocket()
+    {
+        GetComponent<AudioSource>().Stop();
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<Movement>().enabled = false;
     }
 
     /****************************
@@ -39,7 +65,7 @@ public class CollisionHandler : MonoBehaviour
 
     void LoadNextLevel() {
         sceneIndex++; // next in build order
-        if(sceneIndex > SceneManager.sceneCountInBuildSettings) {
+        if(sceneIndex >= SceneManager.sceneCountInBuildSettings) {
             sceneIndex = 0;
         }
 
