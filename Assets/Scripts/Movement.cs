@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] float thrustAmount = 2f;
+    [SerializeField] float rotationAmount = 0.2f; // slows down rotation speed
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,6 @@ public class Movement : MonoBehaviour
 
     void ProcessThrust() {
         if(Input.GetKey(KeyCode.Space)) {
-            // thrust
-            Debug.Log("thrusting");
             rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
         }       
     }
@@ -34,10 +33,17 @@ public class Movement : MonoBehaviour
 
         if(horizontal > 0) {
             // right
-            Debug.Log("right");
+            ApplyRotation(-rotationAmount);
         }
-        if(horizontal < 0) {
-            Debug.Log("left");
+        if(horizontal < 0)
+        {
+            // left
+            ApplyRotation(rotationAmount);
         }
+    }
+
+    private void ApplyRotation(float direction)
+    {
+        transform.Rotate(Vector3.forward * direction * Time.deltaTime);
     }
 }

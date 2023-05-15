@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70b717b485328e4283b67e0cefaf6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustAmount: 1500
+  thrustAmount: 1000
+  rotationDamper: 160
 --- !u!54 &5103919304505932902
 Rigidbody:
   m_ObjectHideFlags: 0
