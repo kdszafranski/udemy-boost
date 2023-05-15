@@ -9,6 +9,7 @@ public class CollisionHandler : MonoBehaviour
     private void Start() {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;        
     }
+    
     /****************************
     / handle collisions
     /****************************/
@@ -38,7 +39,7 @@ public class CollisionHandler : MonoBehaviour
 
     void LoadNextLevel() {
         sceneIndex++; // next in build order
-        if(sceneIndex > SceneManager.sceneCount) {
+        if(sceneIndex > SceneManager.sceneCountInBuildSettings) {
             sceneIndex = 0;
         }
 
