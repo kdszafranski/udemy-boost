@@ -32,9 +32,7 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space)) {
             HandleThrust();
-        }
-        else
-        {
+        } else {
             HandleNoThrust();
         }
     }
