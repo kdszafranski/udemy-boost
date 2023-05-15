@@ -55,8 +55,11 @@ public class CollisionHandler : MonoBehaviour
     / stop input and audio then reload the level
     /****************************/
     void StartCrashSequence() {
-        DisableRocket();      
-        crashParticles.Play();
+        crashParticles.Play();        
+        
+        DisableRocket();
+        // Destroy(gameObject, loadDelayTime - 0.3f);
+
         audioSource.PlayOneShot(crashSound);
 
         // start over

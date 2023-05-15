@@ -9,6 +9,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float thrustAmount = 2f;
     [SerializeField] float rotationAmount = 0.2f; // slows down rotation speed
     [SerializeField] AudioClip thrustSound;
+    [SerializeField] ParticleSystem mainThruster;
+    [SerializeField] ParticleSystem rightThruster;
+    [SerializeField] ParticleSystem leftThruster;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +30,18 @@ public class Movement : MonoBehaviour
 
     void ProcessThrust() {
         if(Input.GetKey(KeyCode.Space)) {
+            // particles
+            if(!mainThruster.isPlaying) {
+                mainThruster.Play();
+            }
+
             rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
             // only play audio if it's not already playing
             if(!src.isPlaying) {
                 src.PlayOneShot(thrustSound);
             }
         } else {
+            mainThruster.Stop();
             if(src.isPlaying) {
                 src.Stop();
             }
@@ -40,15 +49,17 @@ public class Movement : MonoBehaviour
     }
     
     void ProcessRotation() {
-         float horizontal = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal");
 
         if(horizontal > 0) {
             // right
+            // rightThruster.Play();
             ApplyRotation(-rotationAmount);
         }
         if(horizontal < 0)
         {
             // left
+            // leftThruster.Play();
             ApplyRotation(rotationAmount);
         }
     }
