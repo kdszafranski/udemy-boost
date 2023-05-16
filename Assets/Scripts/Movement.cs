@@ -10,17 +10,14 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationAmount = 0.2f; // slows down rotation speed
     [SerializeField] AudioClip thrustSound;
     [SerializeField] ParticleSystem mainThruster;
-    [SerializeField] ParticleSystem rightThruster;
-    [SerializeField] ParticleSystem leftThruster;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProcessThrust();
