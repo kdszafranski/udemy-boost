@@ -13,13 +13,12 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem crashParticles;
 
     AudioSource audioSource;
-
+    bool allowCollisions = true;
     int sceneIndex = 0;
 
 
     private void Start() {
         audioSource = GetComponent<AudioSource>();
-
         sceneIndex = SceneManager.GetActiveScene().buildIndex;        
     }
     
@@ -27,18 +26,24 @@ public class CollisionHandler : MonoBehaviour
     / handle collisions
     /****************************/
     private void OnCollisionEnter(Collision other) {
-       switch(other.gameObject.tag) {
-        case "Friendly":
-            Debug.Log("friendly collision");
-            break;
-        case "Goal":
-            StartSuccessSequence();
-            break;
-        default:
-            StartCrashSequence();
-            break;
-       }
+        if(allowCollisions) {
+            switch(other.gameObject.tag) {
+                case "Friendly":
+                    Debug.Log("friendly collision");
+                    break;
+                case "Goal":
+                    StartSuccessSequence();
+                    break;
+                default:
+                    StartCrashSequence();
+                    break;
+            }
+        }
+    }
 
+    public void toggleCollisions() {
+        allowCollisions = !allowCollisions;
+        Debug.Log("Collisions toggled to : " + allowCollisions);
     }
 
     private void StartSuccessSequence()
@@ -83,7 +88,7 @@ public class CollisionHandler : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
-    void LoadNextLevel() {
+    public void LoadNextLevel() {
         sceneIndex++; // next in build order
         if(sceneIndex >= SceneManager.sceneCountInBuildSettings) {
             sceneIndex = 0;
