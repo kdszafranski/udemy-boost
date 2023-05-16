@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationAmount = 0.2f; // slows down rotation speed
     [SerializeField] AudioClip thrustSound;
     [SerializeField] ParticleSystem mainThruster;
+    [SerializeField] Light thrustLight;
 
 
     void Start()
@@ -41,12 +42,16 @@ public class Movement : MonoBehaviour
         if (audioSource.isPlaying) {
             audioSource.Stop();
         }
+        if(thrustLight.enabled) {
+            thrustLight.enabled = false;
+        }
     }
 
     void HandleThrust()
     {
         // particles
         if (!mainThruster.isPlaying) {
+            thrustLight.enabled = true;
             mainThruster.Play();
         }
 
