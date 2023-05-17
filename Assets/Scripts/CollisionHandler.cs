@@ -8,9 +8,9 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] float loadDelayTime = 2.0f;
     [SerializeField] AudioClip successSound;
     [SerializeField] AudioClip crashSound;
-
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
+    [SerializeField] Light explosionLight;
 
     AudioSource audioSource;
     bool allowCollisions = true;
@@ -62,8 +62,9 @@ public class CollisionHandler : MonoBehaviour
     /****************************/
     void StartCrashSequence() {
         isExploding = true;
-        crashParticles.Play();        
         
+        crashParticles.Play();
+        MakeExplosionLight();
         DisableRocket();
 
         foreach(Transform child in transform) {
@@ -87,6 +88,11 @@ public class CollisionHandler : MonoBehaviour
 
         // start over
         Invoke("ReloadLevel", loadDelayTime);
+    }
+
+    void MakeExplosionLight() {
+        explosionLight.enabled = true;
+        Destroy(explosionLight, .35f);
     }
 
     /****************************
