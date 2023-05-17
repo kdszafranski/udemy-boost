@@ -18,7 +18,8 @@ public class ObstacleMover : MonoBehaviour
 
     void Update()
     {
-        if(period != 0) {
+        // Approximately uses Epsilon https://docs.unity3d.com/ScriptReference/Mathf.Approximately.html
+        if(!Mathf.Approximately(period, 0)) {
             CalculateMovement();
         }
     }
