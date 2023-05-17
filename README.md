@@ -2,6 +2,8 @@
 
 You are the pilot of Rescue Ship Icarus and your job is to land safely at the base to load up fleeing citizens.
 
+Play it: [https://sharemygame.com/@KrisSzafranski/rescue-ship-icarus](https://sharemygame.com/@KrisSzafranski/rescue-ship-icarus)
+
 ![Rescue Ship Icarus](udemy-boost-screenie.png)
 
 ## About 
