@@ -1655,7 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8525803ce29791340864fe5b9e45fc08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadDelayTime: 4
+  loadDelayTime: 3.75
   successSound: {fileID: 8300000, guid: a1a6f36e9b4a66c40a99f66f3ae49e54, type: 3}
   crashSound: {fileID: 8300000, guid: 82f5c450f6a407e42a987126537bd4ba, type: 3}
   successParticles: {fileID: 655303971997063503}
