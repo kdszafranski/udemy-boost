@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Friendly
   - Goal
+  - Explodable
+  - DontExplode
   layers:
   - Default
   - TransparentFX

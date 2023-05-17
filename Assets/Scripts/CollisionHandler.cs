@@ -8,12 +8,13 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] float loadDelayTime = 2.0f;
     [SerializeField] AudioClip successSound;
     [SerializeField] AudioClip crashSound;
-
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
+    [SerializeField] Light explosionLight;
 
     AudioSource audioSource;
     bool allowCollisions = true;
+    bool isExploding = false;
     int sceneIndex = 0;
 
 
@@ -26,7 +27,7 @@ public class CollisionHandler : MonoBehaviour
     / handle collisions
     /****************************/
     private void OnCollisionEnter(Collision other) {
-        if(allowCollisions) {
+        if(allowCollisions && !isExploding) {
             switch(other.gameObject.tag) {
                 case "Friendly":
                     Debug.Log("friendly collision");
@@ -60,15 +61,38 @@ public class CollisionHandler : MonoBehaviour
     / stop input and audio then reload the level
     /****************************/
     void StartCrashSequence() {
-        crashParticles.Play();        
+        isExploding = true;
         
+        crashParticles.Play();
+        MakeExplosionLight();
         DisableRocket();
-        // Destroy(gameObject, loadDelayTime - 0.3f);
+
+        foreach(Transform child in transform) {
+            GameObject go = child.gameObject;
+            Debug.Log(go.name);
+            if(go.CompareTag("Explodable")) {
+                if(go.GetComponent<Collider>() == null) {
+                    go.AddComponent<BoxCollider>();
+                }                
+                go.AddComponent<Rigidbody>();
+                go.GetComponent<Rigidbody>().AddForce(transform.position, ForceMode.Impulse);                
+            } else {
+                // destroy all but the crash particles
+                if(!go.CompareTag("DontExplode")) {
+                    Destroy(go);
+                }
+            }
+        }
 
         audioSource.PlayOneShot(crashSound);
 
         // start over
         Invoke("ReloadLevel", loadDelayTime);
+    }
+
+    void MakeExplosionLight() {
+        explosionLight.enabled = true;
+        Destroy(explosionLight, .35f);
     }
 
     /****************************
@@ -77,7 +101,6 @@ public class CollisionHandler : MonoBehaviour
     private void DisableRocket()
     {
         GetComponent<AudioSource>().Stop();
-        GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Movement>().enabled = false;
     }
 
