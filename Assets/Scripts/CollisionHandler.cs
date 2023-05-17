@@ -61,30 +61,32 @@ public class CollisionHandler : MonoBehaviour
     / stop input and audio then reload the level
     /****************************/
     void StartCrashSequence() {
+        DisableRocket();
         isExploding = true;
         
         crashParticles.Play();
-        MakeExplosionLight();
-        DisableRocket();
+        audioSource.PlayOneShot(crashSound);
 
+        MakeExplosionLight();
+
+        // explode select pieces of the rocket
         foreach(Transform child in transform) {
             GameObject go = child.gameObject;
             Debug.Log(go.name);
             if(go.CompareTag("Explodable")) {
                 if(go.GetComponent<Collider>() == null) {
                     go.AddComponent<BoxCollider>();
-                }                
+                }
+                // now go BOOM!
                 go.AddComponent<Rigidbody>();
                 go.GetComponent<Rigidbody>().AddForce(transform.position, ForceMode.Impulse);                
             } else {
-                // destroy all but the crash particles
+                // destroy a few parts
                 if(!go.CompareTag("DontExplode")) {
                     Destroy(go);
                 }
             }
         }
-
-        audioSource.PlayOneShot(crashSound);
 
         // start over
         Invoke("ReloadLevel", loadDelayTime);
@@ -107,10 +109,13 @@ public class CollisionHandler : MonoBehaviour
     /****************************
     / reloads the current scene
     /****************************/
-    void ReloadLevel() {
+    public void ReloadLevel() {
         SceneManager.LoadScene(sceneIndex);
     }
 
+    /****************************
+    / Loads the next scene
+    /****************************/
     public void LoadNextLevel() {
         sceneIndex++; // next in build order
         if(sceneIndex >= SceneManager.sceneCountInBuildSettings) {

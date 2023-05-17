@@ -20,5 +20,9 @@ public class DebugControls : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C)) {
             collisionHandler.toggleCollisions();
         }
+
+        if(Input.GetKeyDown(KeyCode.R)) {
+            collisionHandler.ReloadLevel();
+        }
     }
 }
