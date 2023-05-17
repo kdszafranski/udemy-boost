@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rock
+  m_Name: DarkRock
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -177,7 +177,7 @@ Material:
     m_Colors:
     - _AOColor: {r: 0, g: 0, b: 0, a: 1}
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.5367212, g: 0.62522316, b: 0.6509434, a: 1}
+    - _Color: {r: 0.31539693, g: 0.41249985, b: 0.4433962, a: 1}
     - _Color1_B: {r: 0.5283019, g: 0.12659307, b: 0.12659307, a: 1}
     - _Color1_D: {r: 1, g: 1, b: 1, a: 1}
     - _Color1_F: {r: 0.509434, g: 0.27353525, b: 0.13168384, a: 1}
