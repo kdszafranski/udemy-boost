@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 100
+  controlID: 112878
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 101
+  controlID: 112879
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 87
+  controlID: 112850
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -412,7 +412,7 @@ MonoBehaviour:
       layout: 4
   m_WindowGUID: 517a4b72b1ee08c43afac94fc33bd874
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 6917529027641081856
+  m_OverrideSceneCullingMask: 4611686018427387905
   m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -583,14 +583,14 @@ MonoBehaviour:
     y: 703.2
     width: 1432.8
     height: 338.8
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_ActualView: {fileID: 10}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 9}
   m_Panes:
   - {fileID: 9}
   - {fileID: 10}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -660,21 +660,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 74
   m_LastFolders:
-  - Assets/Materials
+  - Assets
   m_LastFoldersGridSize: 74
   m_LastProjectPath: C:\Users\kdsza\Documents\game-projects\learning\unity\udemy-boost
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 365a0000
-    m_LastClickedID: 23094
+    m_SelectedIDs: 285a0000
+    m_LastClickedID: 23080
     m_ExpandedIDs: 00000000285a0000fe710000a873000026740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000285a0000
+    m_ExpandedIDs: 00000000285a0000fe710000a873000026740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -728,9 +728,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 02caf7ff
-    m_LastClickedInstanceID: -538110
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: caeb0400
+    m_LastClickedInstanceID: 322506
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -818,7 +818,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 02caf7ff5ccaf7fff6dbf7ffecddf7fff6e0f7ff680bf8ff1e0cf8ff460cf8fff41ff8ffce40f8ff0699f8ffe29ff8ff3ea3f8ff96a6f8ff70a9f8ffb814f9ff8e1df9ffb88bf9ff768df9ff8c92f9ff3899f9ff389cf9ff509ff9ff96d4f9ff1ad7f9ff14dbf9ff1adff9ffe4dff9ff16e5f9ffec09faff180bfaff500cfaff847dfaff828bfaffbc8cfaffbc8efafffc8ffaff1addfafface4faffd8e5faff10e7faffa6f5fafff0f6faff1cf8faff1005fbff8816fbffb417fbff0019fbff3e33fbff6a34fbff9c35fbff544cfbff7a4dfbffa64efbfff650fbff52bdfbff76effbffae28fcff1a2dfcff722efcff6636fcffdc38fcffd839fcffd03afcff4c3cfcffba46fcffb26ffcff2c3afeffca70feff4a9ffeffa4affeff58b2fefffeb3feffb0b4feff2cb5feffdcb5feff7ab6fefff6b6feff72b7feff60b8feffdcb8feffd8bcfeff02d0feffeed0feff5841ffff0049ffff8c5dffff0462ffffbc65ffff38fbffffb67700004c780000087c0000c8d00200
+      m_ExpandedIDs: 9c90f7ff24ec0400
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -902,7 +902,7 @@ MonoBehaviour:
     m_CachedPref: 353
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -538110
+  m_LastInspectedObjectInstanceID: 322506
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

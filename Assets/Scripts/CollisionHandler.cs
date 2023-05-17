@@ -63,12 +63,28 @@ public class CollisionHandler : MonoBehaviour
         crashParticles.Play();        
         
         DisableRocket();
-        // Destroy(gameObject, loadDelayTime - 0.3f);
+
+        foreach(Transform child in transform) {
+            GameObject go = child.gameObject;
+            Debug.Log(go.name);
+            if(go.CompareTag("Explodable")) {
+                if(go.GetComponent<Collider>() == null) {
+                    go.AddComponent<BoxCollider>();
+                }                
+                go.AddComponent<Rigidbody>();
+                go.GetComponent<Rigidbody>().AddForce(transform.position, ForceMode.Impulse);                
+            } else {
+                // destroy all but the crash particles
+                if(!go.CompareTag("DontExplode")) {
+                    Destroy(go);
+                }
+            }
+        }
 
         audioSource.PlayOneShot(crashSound);
 
         // start over
-        Invoke("ReloadLevel", loadDelayTime);
+        // Invoke("ReloadLevel", loadDelayTime);
     }
 
     /****************************
@@ -77,7 +93,6 @@ public class CollisionHandler : MonoBehaviour
     private void DisableRocket()
     {
         GetComponent<AudioSource>().Stop();
-        GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Movement>().enabled = false;
     }
 
