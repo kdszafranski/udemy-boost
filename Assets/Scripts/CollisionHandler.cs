@@ -14,6 +14,7 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
     bool allowCollisions = true;
+    bool isExploding = false;
     int sceneIndex = 0;
 
 
@@ -26,7 +27,7 @@ public class CollisionHandler : MonoBehaviour
     / handle collisions
     /****************************/
     private void OnCollisionEnter(Collision other) {
-        if(allowCollisions) {
+        if(allowCollisions && !isExploding) {
             switch(other.gameObject.tag) {
                 case "Friendly":
                     Debug.Log("friendly collision");
@@ -60,6 +61,7 @@ public class CollisionHandler : MonoBehaviour
     / stop input and audio then reload the level
     /****************************/
     void StartCrashSequence() {
+        isExploding = true;
         crashParticles.Play();        
         
         DisableRocket();
@@ -84,7 +86,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.PlayOneShot(crashSound);
 
         // start over
-        // Invoke("ReloadLevel", loadDelayTime);
+        Invoke("ReloadLevel", loadDelayTime);
     }
 
     /****************************
