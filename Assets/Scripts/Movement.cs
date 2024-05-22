@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
             mainThruster.Play();
         }
 
-        rb.AddRelativeForce(Vector3.up * thrustAmount * Time.deltaTime);
+        rb.AddRelativeForce(thrustAmount * Time.deltaTime * Vector3.up);
 
         // only play audio if it's not already playing
         if (!audioSource.isPlaying) {

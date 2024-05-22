@@ -89,7 +89,7 @@ public class CollisionHandler : MonoBehaviour
         }
 
         // start over
-        Invoke("ReloadLevel", loadDelayTime);
+        Invoke(nameof(ReloadLevel), loadDelayTime);
     }
 
     void MakeExplosionLight() {
